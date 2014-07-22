@@ -1,6 +1,7 @@
 package com.netaporter.customerspark.controller;
 
 
+import com.netaporter.customerspark.services.CustomerService;
 import com.netaporter.customerspark.transformers.JsonTransformer;
 
 import static spark.Spark.get;
@@ -10,7 +11,7 @@ import static spark.Spark.get;
  */
 public class CustomerController {
 
-    public CustomerController() {
+    public CustomerController(final CustomerService customerService) {
 
         get("/customer/:id", "application/json", (req, res) -> {
             String id = req.params(":id");

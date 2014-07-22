@@ -1,6 +1,7 @@
 package com.netaporter.customerspark;
 
 import com.netaporter.customerspark.controller.CustomerController;
+import com.netaporter.customerspark.services.CustomerService;
 
 
 /**
@@ -10,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        new CustomerController();
+        new CustomerController(new CustomerService());
 
     }
 }
