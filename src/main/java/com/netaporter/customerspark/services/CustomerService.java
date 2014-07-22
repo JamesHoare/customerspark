@@ -25,7 +25,7 @@ public class CustomerService {
     }
 
     public Customer createUser(String name, String email) {
-        failIfInvalid(name, email);
+        //todo handle constraint violation
         Customer customer = new Customer(name, email);
         customers.put(customer.getId(), customer);
         return customer;
@@ -33,23 +33,13 @@ public class CustomerService {
 
     public Customer updateUser(String id, String name, String email) {
         Customer customer = customers.get(id);
-        if (customer == null) {
-            throw new IllegalArgumentException("No customer with id '" + id + "' found");
-        }
-        failIfInvalid(name, email);
+        //todo Optional check
         customer.setName(name);
         customer.setEmail(email);
         return customer;
     }
 
-    private void failIfInvalid(String name, String email) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("Parameter 'name' cannot be empty");
-        }
-        if (email == null || email.isEmpty()) {
-            throw new IllegalArgumentException("Parameter 'email' cannot be empty");
-        }
-    }
+
 
 
 }
