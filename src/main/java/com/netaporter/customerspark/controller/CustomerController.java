@@ -15,29 +15,10 @@ public class CustomerController {
 
         get("/customer/:id", "application/json", (req, res) -> {
             String id = req.params(":id");
-            return new Customer("james", "Hoare");
+            return customerService.getUser(id);
         }, new JsonTransformer());
 
 
-    }
-
-    private static class Customer {
-
-        private String firstName;
-        private String lastName;
-
-        private Customer(String firstName, String lastName) {
-            this.firstName = firstName;
-            this.lastName = lastName;
-        }
-
-        public String getFirstName() {
-            return firstName;
-        }
-
-        public String getLastName() {
-            return lastName;
-        }
     }
 
 
