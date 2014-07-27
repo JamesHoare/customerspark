@@ -2,9 +2,9 @@ package com.netaporter.customerspark.services;
 
 import com.netaporter.customerspark.domain.Customer;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static java.util.stream.Collectors.toList;
 
@@ -14,7 +14,7 @@ import static java.util.stream.Collectors.toList;
 public class CustomerService {
 
 
-    private Map<String, Customer> customers = new HashMap<>();
+    private Map<String, Customer> customers = new ConcurrentHashMap<>();
 
     public List<Customer> getAllUsers() {
         return customers.values().stream().collect(toList());
@@ -26,18 +26,19 @@ public class CustomerService {
 
     public Customer createUser(String name, String email) {
         //todo handle constraint violation
+
         Customer customer = new Customer(name, email);
         customers.put(customer.getId(), customer);
         return customer;
     }
 
-    public Customer updateUser(String id, String name, String email) {
-        Customer customer = customers.get(id);
+   /* public Customer updateUser(String id, String name, String email) {
+        Customer customer = Optional.ofNullable(getUser(id)));
         //todo Optional check
         customer.setName(name);
         customer.setEmail(email);
         return customer;
-    }
+    }*/
 
 
 

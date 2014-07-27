@@ -1,25 +1,29 @@
 package com.netaporter.customerspark.transformers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import spark.ResponseTransformer;
+
+import java.nio.charset.Charset;
 
 /**
  * Created by jameshoare on 21/07/2014.
  */
 public class JsonTransformer implements ResponseTransformer {
 
-    private ObjectMapper mapper = new ObjectMapper().registerModule(new AfterburnerModule());
+    public static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
+
+    private static ObjectMapper mapper = new ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, true);
+
 
     @Override
-    public String render(Object model)  {
+    public String render(Object model) {
         try {
             return mapper.writeValueAsString(model);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            throw new IllegalArgumentException("Cannot serialize model to JSON", ex);
         }
-        return "";
+
     }
 
 }
