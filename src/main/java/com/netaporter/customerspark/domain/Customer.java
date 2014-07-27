@@ -1,8 +1,8 @@
 package com.netaporter.customerspark.domain;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 /**
@@ -11,15 +11,15 @@ import java.util.UUID;
 public class Customer {
 
 
-
     private String id;
 
-    @NotNull
+    @NotBlank
     private String name;
+
     @Email
     private String email;
 
-    public Customer(String name, String email) {
+    public Customer(@NotBlank String name, @NotBlank String email) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.email = email;

@@ -1,9 +1,11 @@
 package com.netaporter.customerspark.services;
 
 import com.netaporter.customerspark.domain.Customer;
+import org.hibernate.validator.constraints.NotBlank;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static java.util.stream.Collectors.toList;
@@ -24,23 +26,19 @@ public class CustomerService {
         return customers.get(id);
     }
 
-    public Customer createUser(String name, String email) {
-        //todo handle constraint violation
-
+    public Customer createUser(@NotBlank String name, @NotBlank String email) {
         Customer customer = new Customer(name, email);
         customers.put(customer.getId(), customer);
         return customer;
     }
 
-   /* public Customer updateUser(String id, String name, String email) {
+    public Customer updateUser(String id, String name, String email) {
         Customer customer = Optional.ofNullable(getUser(id)));
-        //todo Optional check
+
         customer.setName(name);
         customer.setEmail(email);
         return customer;
-    }*/
-
-
+    }
 
 
 }
