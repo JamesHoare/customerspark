@@ -19,21 +19,21 @@ public class CustomerService {
 
     private Map<String, Customer> customers = new ConcurrentHashMap<String, Customer>();
 
-    public List<Customer> getAllUsers() {
+    public List<Customer> getCustomers() {
         return customers.values().stream().collect(toList());
     }
 
-    public Customer getUser(String id) {
+    public Customer getCustomer(String id) {
         return Optional.ofNullable(customers.get(id)).orElseThrow(() -> new NoSuchElementException("Customer could not be updated for id: " + id));
     }
 
-    public Customer createUser(@NotBlank String name, @NotBlank String email) {
+    public Customer createCustomer(@NotBlank String name, @NotBlank String email) {
         Customer customer = new Customer(name, email);
         customers.put(customer.getId(), customer);
         return customer;
     }
 
-    public Customer updateUser(String id, String name, String email) {
+    public Customer updateCustomer(String id, String name, String email) {
         Optional<Customer> customer = Optional.ofNullable(customers.get(id));
         customer.ifPresent(c -> c.setName(name));
         customer.ifPresent(c -> c.setEmail(email));

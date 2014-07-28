@@ -15,7 +15,7 @@ public class CustomerController {
 
         get("/customer/:id", "application/json", (req, res) -> {
             String id = req.params(":id");
-            return customerService.getUser(id);
+            return customerService.getCustomer(id);
         }, new JsonTransformer());
 
 
