@@ -1,7 +1,6 @@
 package com.netaporter.customerspark.services;
 
 import com.netaporter.customerspark.domain.Customer;
-import org.hibernate.validator.constraints.NotBlank;
 
 import java.util.List;
 import java.util.Map;
@@ -27,7 +26,7 @@ public class CustomerService {
         return Optional.ofNullable(customers.get(id)).orElseThrow(() -> new NoSuchElementException("Customer could not be updated for id: " + id));
     }
 
-    public Customer createCustomer(@NotBlank String name, @NotBlank String email) {
+    public Customer createCustomer(String name,String email) {
         Customer customer = new Customer(name, email);
         customers.put(customer.getId(), customer);
         return customer;
