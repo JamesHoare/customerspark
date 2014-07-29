@@ -20,7 +20,7 @@ public class CustomerController {
         }, new JsonTransformer());
 
         get("/customers/", (req, res) -> {
-            customerService.getCustomers();
+            return customerService.getCustomers();
         }, new JsonTransformer());
 
         /**
