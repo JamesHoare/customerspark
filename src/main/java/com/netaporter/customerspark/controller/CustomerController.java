@@ -19,6 +19,10 @@ public class CustomerController {
             return customerService.getCustomer(id);
         }, new JsonTransformer());
 
+        get("/customers/", (req, res) -> {
+            customerService.getCustomers();
+        }, new JsonTransformer());
+
         /**
          * e.g  curl -XPOST http://localhost:4567/customer?name=James&email=james.hoare@net-a-porter.com
          */
