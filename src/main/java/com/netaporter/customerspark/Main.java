@@ -9,6 +9,11 @@ import com.netaporter.customerspark.services.CustomerService;
  */
 public class Main {
 
+    /**
+     * Wire the Application
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         new CustomerController(new CustomerService());
