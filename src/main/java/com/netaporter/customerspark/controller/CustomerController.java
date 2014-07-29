@@ -23,13 +23,14 @@ public class CustomerController {
             return customerService.getCustomers();
         }, new JsonTransformer());
 
+
         /**
          * e.g  curl -XPOST http://localhost:4567/customer?name=James&email=james.hoare@net-a-porter.com
          */
-        post("/customer", (req, res) -> customerService.createCustomer(
-                req.queryParams("name"),
-                req.queryParams("email")
-        ), new JsonTransformer());
+        post("/customer", (req, res) -> {
+            res.status(201);
+            return customerService.createCustomer(req.queryParams("name"), req.queryParams("email"));
+        }, new JsonTransformer());
 
         put("/customer/:id", (req, res) -> customerService.updateCustomer(
                 req.params(":id"),
