@@ -11,7 +11,7 @@ import static spark.Spark.*;
  */
 public class CustomerController {
 
-    public CustomerController(final CustomerService customerService, JsonTransformer jsonTransformer) {
+    public CustomerController(final CustomerService customerService, final JsonTransformer jsonTransformer) {
 
 
         get("/customer/:id", (req, res) -> {
