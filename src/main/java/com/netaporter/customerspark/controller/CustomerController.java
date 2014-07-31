@@ -11,17 +11,17 @@ import static spark.Spark.*;
  */
 public class CustomerController {
 
-    public CustomerController(final CustomerService customerService) {
+    public CustomerController(final CustomerService customerService, JsonTransformer jsonTransformer) {
 
 
         get("/customer/:id", (req, res) -> {
             String id = req.params(":id");
             return customerService.getCustomer(id);
-        }, new JsonTransformer());
+        }, jsonTransformer);
 
         get("/customers/", (req, res) -> {
             return customerService.getCustomers();
-        }, new JsonTransformer());
+        }, jsonTransformer);
 
 
         /**
@@ -30,13 +30,13 @@ public class CustomerController {
         post("/customer", (req, res) -> {
             res.status(201);
             return customerService.createCustomer(req.queryParams("name"), req.queryParams("email"));
-        }, new JsonTransformer());
+        }, jsonTransformer);
 
         put("/customer/:id", (req, res) -> customerService.updateCustomer(
                 req.params(":id"),
                 req.queryParams("name"),
                 req.queryParams("email")
-        ), new JsonTransformer());
+        ), jsonTransformer);
 
 
     }

@@ -23,7 +23,7 @@ public class CustomerService {
     }
 
     public Customer getCustomer(String id) {
-        return Optional.ofNullable(customers.get(id)).orElseThrow(() -> new NoSuchElementException("Customer could not be updated for id: " + id));
+        return Optional.ofNullable(customers.get(id)).orElseThrow(() -> new NoSuchElementException("Customer could not be found for id: " + id));
     }
 
     public Customer createCustomer(String name,String email) {

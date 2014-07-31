@@ -2,6 +2,7 @@ package com.netaporter.customerspark;
 
 import com.netaporter.customerspark.controller.CustomerController;
 import com.netaporter.customerspark.services.CustomerService;
+import com.netaporter.customerspark.transformers.JsonTransformer;
 
 
 /**
@@ -16,7 +17,7 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        new CustomerController(new CustomerService());
+        new CustomerController(new CustomerService(), new JsonTransformer());
 
     }
 }
